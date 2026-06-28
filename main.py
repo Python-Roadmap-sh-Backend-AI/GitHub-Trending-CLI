@@ -1,5 +1,6 @@
 import argparse
 from ast import main
+from urllib import response
 import requests
 import sys
 from datetime import datetime, timedelta
@@ -35,14 +36,14 @@ def fetch_repositories(duration, limit):
     try:
         reponse = requests.get(
             BASE_URL,
-            params=params
+            params=params,
             timeout=10
-
-            response.raise_for_status()
-            data = response.json()
-            return data.get("items", [])[:limit]
-
         )
+        response.raise_for_status()
+        data = response.json()
+        return data.get("items", [])[:limit]
+
+        
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from GitHub API: {e}")
         sys.exit(1)
@@ -58,6 +59,21 @@ def fetch_repositories(duration, limit):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from GitHub API: {e}")
         sys.exit(1)
+
+
+def display_repositories(repositories):
+    if not repositories:
+        print("No repositories found.")
+        return
+
+    print("\n" + "="*40 + "\nTop Repositories:\n" + "="*40)
+    for repo in repositories:
+        name = repo.get("name")
+        description = repo.get("description", "No description provided.")
+        lanugage = repo.get("language", "Not specified")
+        stars = repo.get("stargazers_count", 0)
+        url = repo.get("html_url")
+        print(f"Name: {name}\nDescription: {description}\nStars: {stars}\nURL: {url}\n{'-'*40}")
 
     
 
