@@ -77,3 +77,33 @@ Stars: 12000
 URL: https://github.com/user/example-repo
 ----------------------------------------
 ```
+
+## Testing
+
+Unit tests are provided to validate the functionality of the application. Tests are written using `pytest` and include mocking for API calls to avoid external dependencies.
+
+### Install Testing Dependencies
+
+```bash
+pip install pytest
+```
+
+### Run Tests
+
+```bash
+python3 -m pytest
+```
+
+Or with verbose output:
+
+```bash
+python3 -m pytest -v
+```
+
+### Test Coverage
+
+The test suite covers:
+- Date calculation for different durations
+- API parameter construction
+- Error handling for invalid inputs
+- Repository data display formatting
