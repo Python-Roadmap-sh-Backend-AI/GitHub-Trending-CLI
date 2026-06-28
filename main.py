@@ -85,8 +85,8 @@ def main():
     parser.add_argument(
         "--limit",
         type=int,
-        default=20,
-        help="Number of repositories to fetch (default: 20).",
+        default=5,
+        help="Number of repositories to fetch (default: 5).",
     )
 
     args = parser.parse_args()
